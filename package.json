@@ -5,8 +5,7 @@
   "description": "Bobra Scoring Microservice (back-end)",
   "main": "index.js",
   "scripts": {
-    "echo": "echo %pwd%",
-    "test": "docker run -v \"%pwd%/tests:/usr/src/app/tests\" bobra-scoring-test",
+    "test": "docker run -v \"$(pwd)/tests:/usr/src/app/tests\" bobra-scoring-test",
     "build-test": "docker build --no-cache --rm -t bobra-scoring-test -f Dockerfile.test ."
   },
   "keywords": [
