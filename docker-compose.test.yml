@@ -1,0 +1,28 @@
+version: '3'
+services:
+  test:
+    build: 
+      context: .
+      dockerfile: Dockerfile.test
+    container_name: 'boilerplate-test'
+    environment:
+      - NODE_ENV=test
+      - MONGODB_CONNECTION=mongodb://mongodb:27017/tests
+    volumes:
+      - ./tests:/usr/src/app/tests
+      - ./src:/usr/src/app/src
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+  mongodb:
+    image: mongo:latest
+    container_name: "mongodb"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./output/db:/data/db
+    ports:
+      - 27017:27017
+    command: mongod --smallfiles --logpath=/dev/null

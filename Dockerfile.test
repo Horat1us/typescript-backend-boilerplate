@@ -9,7 +9,9 @@ RUN npm i -g mocha
 
 COPY package.json .
 COPY package-lock.json .
+COPY tsconfig.json .
 
 RUN npm i
 
-CMD ["mocha", "-r", "ts-node/register", "./tests/*-specs.ts"]
+
+CMD ["mocha", "-r", "ts-node/register", "-r", "./tests/bootstrap.ts", "./tests/*-specs.ts"]
