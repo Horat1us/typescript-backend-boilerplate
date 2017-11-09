@@ -23,7 +23,7 @@ BookController.get('/:id', async (request: Request, response: Response) => {
 
 
     if (!book) {
-        response.statusCode = 405;
+        response.statusCode = 404;
         return response.send().end();
     }
 
