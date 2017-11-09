@@ -8,11 +8,11 @@ WORKDIR /usr/src/app
 COPY package.json .
 COPY package-lock.json .
 
-RUN npm i --production
+RUN npm i
 
 COPY . .
 
 RUN ./node_modules/.bin/tsc
 RUN ./node_modules/.bin/babel --out-dir build build
 
-CMD ["node", "./build/src/index.js"]
+CMD ["./node_modules/.bin/nodemon", "--watch", "src/**/*.ts", "--inspect=0.0.0.0:9229", "--exec", "./node_modules/.bin/ts-node", "./src/index.ts"]

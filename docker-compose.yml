@@ -3,14 +3,13 @@ services:
   test:
     build: 
       context: .
-      dockerfile: Dockerfile.test
+      dockerfile: Dockerfile
     container_name: 'boilerplate-test'
+    ports:
+      - "5001:3000"
     environment:
       - NODE_ENV=test
       - MONGODB_CONNECTION=mongodb://mongodb:27017/tests
-    volumes:
-      - ./tests:/usr/src/app/tests
-      - ./src:/usr/src/app/src
     depends_on:
       - mongodb
     links:

@@ -1,9 +1,5 @@
 import { expect } from "chai";
-import { BookInterface, BookModel, BookSchema } from "../src/models/Book";
-import { connection } from "../src/connection";
-import * as mongoose from "mongoose";
-
-const Book: mongoose.Model<BookModel> = connection.model<BookModel>("Book", BookSchema);
+import { BookInterface, BookModel, BookSchema, Book } from "../../src/models/Book";
 
 describe("Book", () => {
     it("should create a book", async () => {
@@ -16,6 +12,6 @@ describe("Book", () => {
         expect(result._id).to.exist;
         expect(result.title).to.be.equal(book.title);
 
-        return true;
+        return 2;
     });
 });
